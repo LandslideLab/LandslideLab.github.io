@@ -1,5 +1,6 @@
 /* LANDSLIDE — Micrographics Style Introduction Page */
 /* Dense technical information poster aesthetic */
+/* Enhanced with distressed typography & SVG micro-elements */
 
 /* ============================================
    RESET & BASE
@@ -19,6 +20,7 @@
   --mid-gray: #666666;
   --light-gray: #CCCCCC;
   --border-gray: #E5E5E5;
+  --faint-gray: #F2F2F2;
 
   /* Typography */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
@@ -47,6 +49,52 @@ body {
   color: var(--black);
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+/* ============================================
+   SVG FILTERS (distressed / rough edge)
+   ============================================ */
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ============================================
+   DISTRESSED TYPOGRAPHY
+   ============================================ */
+.distressed {
+  filter: url(#rough-edge);
+  position: relative;
+}
+
+.distressed-light {
+  filter: url(#rough-edge-light);
+}
+
+/* Printed/letterpress effect for key text */
+.letterpress {
+  text-shadow:
+    0.3px 0 0 rgba(0,0,0,0.15),
+    -0.2px 0 0 rgba(0,0,0,0.1),
+    0 0.3px 0 rgba(0,0,0,0.1),
+    0.5px 0.5px 0 rgba(0,0,0,0.05);
+  position: relative;
+}
+
+/* Noise overlay for texture */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
 }
 
 /* ============================================
@@ -102,8 +150,87 @@ body {
     linear-gradient(90deg, var(--border-gray) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.25;
   z-index: 0;
+}
+
+/* Fine sub-grid */
+.page-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(var(--faint-gray) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--faint-gray) 0.5px, transparent 0.5px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* ============================================
+   SIDE RULER / COORDINATE ANNOTATIONS
+   ============================================ */
+.side-ruler {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--light-gray);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
+.side-ruler.left {
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 39px,
+    var(--light-gray) 39px,
+    var(--light-gray) 40px
+  );
+}
+
+.side-ruler.right {
+  right: -1px;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+}
+
+.top-ruler {
+  position: relative;
+  z-index: 1;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--light-gray);
+  letter-spacing: 0.03em;
+  border-bottom: 0.5px solid var(--border-gray);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 39px,
+    var(--light-gray) 39px,
+    var(--light-gray) 40px
+  );
 }
 
 /* ============================================
@@ -154,6 +281,41 @@ body {
 }
 
 /* ============================================
+   REGISTRATION MARKS
+   ============================================ */
+.reg-mark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  z-index: 2;
+}
+
+.reg-mark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0.5px;
+  background: var(--light-gray);
+}
+
+.reg-mark::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0.5px;
+  height: 100%;
+  background: var(--light-gray);
+}
+
+.reg-mark.circle {
+  border: 0.5px solid var(--light-gray);
+  border-radius: 50%;
+}
+
+/* ============================================
    HERO SECTION
    ============================================ */
 .hero {
@@ -192,6 +354,7 @@ body {
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 16px;
+  filter: url(#rough-edge-light);
 }
 
 .hero-title .mountain {
@@ -275,6 +438,63 @@ body {
 .crosshair.br { bottom: 16px; right: 16px; }
 
 /* ============================================
+   MICRO-DECORATION STRIPS
+   ============================================ */
+.micro-strip {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px;
+  border-bottom: 0.5px solid var(--border-gray);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--light-gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.micro-strip .micro-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.micro-strip .micro-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--light-gray);
+}
+
+.micro-strip .micro-line {
+  flex: 1;
+  height: 0.5px;
+  background: var(--border-gray);
+  margin: 0 8px;
+}
+
+/* Data matrix decoration */
+.data-matrix {
+  display: grid;
+  grid-template-columns: repeat(8, 3px);
+  grid-template-rows: repeat(8, 3px);
+  gap: 1px;
+  opacity: 0.3;
+}
+
+.data-matrix .dm-cell {
+  background: var(--black);
+}
+
+.data-matrix .dm-cell.empty {
+  background: transparent;
+}
+
+/* ============================================
    MODULE SECTIONS
    ============================================ */
 .module {
@@ -294,11 +514,24 @@ body {
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  position: relative;
+}
+
+/* Connecting line from header to content */
+.module-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 16px;
+  width: 40px;
+  height: 2px;
+  background: var(--black);
 }
 
 .module-number {
   font-weight: 700;
   color: var(--black);
+  filter: url(#rough-edge-light);
 }
 
 .module-title {
@@ -346,6 +579,17 @@ body {
 
 .sidebar-block {
   margin-bottom: 24px;
+  position: relative;
+}
+
+.sidebar-block::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--black);
 }
 
 .sidebar-label {
@@ -385,6 +629,11 @@ body {
   background: var(--black);
 }
 
+.status-badge .dot.hollow {
+  background: transparent;
+  border: 1px solid var(--black);
+}
+
 /* ============================================
    MODULE 002 — FOCUS AREAS
    ============================================ */
@@ -404,12 +653,36 @@ body {
   border-right: none;
 }
 
+/* Corner decoration on focus items */
+.focus-item::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 0.5px solid var(--light-gray);
+  border-right: 0.5px solid var(--light-gray);
+}
+
+.focus-item::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 0.5px solid var(--light-gray);
+  border-left: 0.5px solid var(--light-gray);
+}
+
 .focus-item-number {
   font-family: var(--font-mono);
   font-size: 9px;
   color: var(--mid-gray);
   letter-spacing: 0.1em;
   margin-bottom: 12px;
+  filter: url(#rough-edge-light);
 }
 
 .focus-item-title {
@@ -444,10 +717,28 @@ body {
   align-items: start;
   padding: 20px 0;
   border-bottom: var(--border-light);
+  position: relative;
 }
 
 .project-card:last-child {
   border-bottom: none;
+}
+
+/* Connecting line decoration */
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 0;
+  width: 0.5px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--light-gray) 0px,
+    var(--light-gray) 2px,
+    transparent 2px,
+    transparent 6px
+  );
 }
 
 .project-index {
@@ -456,6 +747,7 @@ body {
   font-weight: 700;
   color: var(--black);
   line-height: 1;
+  filter: url(#rough-edge-light);
 }
 
 .project-info h3 {
@@ -515,6 +807,24 @@ body {
   border-right: none;
 }
 
+/* Arrow connector between steps */
+.join-step:not(:last-child)::after {
+  content: '\2192';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--light-gray);
+  z-index: 2;
+  background: var(--white);
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .step-number {
   font-family: var(--font-mono);
   font-size: 32px;
@@ -522,6 +832,7 @@ body {
   color: var(--black);
   line-height: 1;
   margin-bottom: 16px;
+  filter: url(#rough-edge-light);
 }
 
 .step-number::after {
@@ -591,6 +902,7 @@ body {
   color: var(--mid-gray);
   min-width: 24px;
   padding-top: 2px;
+  filter: url(#rough-edge-light);
 }
 
 .rule-text {
@@ -609,6 +921,21 @@ body {
   background: var(--black);
   color: var(--white);
   padding: 64px 32px;
+  overflow: hidden;
+}
+
+/* Noise texture on dark background */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .cta-grid {
@@ -616,6 +943,8 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-left h2 {
@@ -624,6 +953,7 @@ body {
   letter-spacing: -0.02em;
   line-height: 1.1;
   margin-bottom: 16px;
+  filter: url(#rough-edge-light);
 }
 
 .cta-left p {
@@ -787,12 +1117,68 @@ body {
   );
 }
 
+/* Dimension line decoration */
+.dimension-line {
+  position: relative;
+  height: 12px;
+  margin: 0 16px;
+  z-index: 1;
+}
+
+.dimension-line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: var(--light-gray);
+}
+
+.dimension-line::after {
+  content: attr(data-dim);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--light-gray);
+  background: var(--white);
+  padding: 0 4px;
+  letter-spacing: 0.05em;
+}
+
 /* Coordinate annotation */
 .coord-annotation {
   font-family: var(--font-mono);
   font-size: 8px;
   color: var(--light-gray);
   position: absolute;
+}
+
+/* Section micro-label */
+.section-micro-label {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--light-gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 16px;
+  border-bottom: 0.5px solid var(--border-gray);
+  background: var(--white);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-micro-label .sml-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--light-gray);
 }
 
 /* ============================================
@@ -832,6 +1218,13 @@ body {
     border-right: none;
     border-bottom: var(--border-light);
   }
+  .join-step:not(:last-child)::after {
+    content: '\2193';
+    right: 50%;
+    top: auto;
+    bottom: -6px;
+    transform: translateX(50%);
+  }
   .rules-list {
     grid-template-columns: 1fr;
   }
@@ -867,6 +1260,10 @@ body {
   .about-sidebar {
     padding-left: 0;
   }
+  .top-ruler,
+  .side-ruler {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -901,7 +1298,11 @@ body {
     gap: 4px;
     align-items: flex-start;
   }
-  .cta-left h2 {
-    font-size: 32px;
+  .meta-bar .meta-center,
+  .meta-bar .meta-right {
+    display: none;
+  }
+  .micro-strip {
+    display: none;
   }
 }

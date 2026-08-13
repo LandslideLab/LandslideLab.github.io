@@ -8,17 +8,52 @@
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <!-- SVG Filters for distressed effects -->
+    <svg class="svg-filters" aria-hidden="true">
+      <defs>
+        <filter id="rough-edge" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="4" seed="1" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="rough-edge-light" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="3" seed="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="rough-edge-heavy" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="5" seed="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Noise overlay for paper/print texture -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
     <div class="page-wrapper">
+
+      <!-- ============================================
+           TOP RULER / COORDINATE BAR
+           ============================================ -->
+      <div class="top-ruler" aria-hidden="true">
+        <span>0</span>
+        <span>X:0040</span>
+        <span>X:0080</span>
+        <span>X:0120</span>
+        <span>X:0160</span>
+        <span>X:0200</span>
+        <span>X:0240</span>
+        <span>1200px</span>
+      </div>
 
       <!-- ============================================
            TOP METADATA BAR
            ============================================ -->
       <div class="meta-bar">
         <div class="meta-left">
-          <span class="mono text-xs">LS-2024-001</span>
+          <span class="mono text-xs letterpress">LS-2024-001</span>
           <span class="meta-separator">|</span>
           <span class="mono text-xs">REV.1.0.0</span>
           <span class="meta-separator">|</span>
@@ -30,12 +65,34 @@
           <span class="mono text-xs">CLASS: OPEN-SOURCE</span>
         </div>
         <div class="meta-right">
-          <span class="mono text-xs">40.7128°N</span>
+          <span class="mono text-xs">40.7128&deg;N</span>
           <span class="meta-separator">/</span>
-          <span class="mono text-xs">74.0060°W</span>
+          <span class="mono text-xs">74.0060&deg;W</span>
           <span class="meta-separator">|</span>
           <span class="mono text-xs">2024.08.13</span>
         </div>
+      </div>
+
+      <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>SEC.00</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>GRID: WGS84</span>
+        <div class="micro-line"></div>
+        <span>SCALE 1:1</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>REF.LANDSLIDE</span>
       </div>
 
       <!-- ============================================
@@ -47,13 +104,16 @@
         <div class="crosshair bl"></div>
         <div class="crosshair br"></div>
 
+        <!-- Registration marks -->
+        <div class="reg-mark circle" style="top: 24px; left: 50%; transform: translateX(-50%);"></div>
+
         <div class="hero-grid">
           <div class="hero-left">
             <div>
-              <div class="hero-tagline">
+              <div class="hero-tagline letterpress">
                 <span class="mono">[ 000 ]</span> &mdash; COMMUNITY SPECIFICATION SHEET
               </div>
-              <h1 class="hero-title">
+              <h1 class="hero-title distressed">
                 LANDSLIDE<span class="mountain">&#9968;</span>
               </h1>
               <p class="hero-tagline" style="font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--black); font-weight: 500;">
@@ -114,8 +174,18 @@
       </section>
 
       <!-- ============================================
+           DIMENSION LINE
+           ============================================ -->
+      <div class="dimension-line" data-dim="1200px / 100%" aria-hidden="true"></div>
+
+      <!-- ============================================
            MODULE 001 — ABOUT
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.001 / ABOUT / SEC.A</span>
+        <span style="margin-left: auto;">ROW.01</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 001 ]</span>
@@ -138,7 +208,7 @@
             <div class="about-sidebar">
               <div class="sidebar-block">
                 <div class="sidebar-label">Mission Statement</div>
-                <div class="sidebar-value">
+                <div class="sidebar-value letterpress">
                   Build strange, ambitious things.<br/>
                   Make weird ideas real.<br/>
                   Keep everything open.
@@ -174,8 +244,35 @@
       </section>
 
       <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>DIR.001-004</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>RESEARCH VECTOR</span>
+        <div class="micro-line"></div>
+        <span>4 AXES</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>SEC.B</span>
+      </div>
+
+      <!-- ============================================
            MODULE 002 — FOCUS AREAS
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.002 / FOCUS / SEC.B</span>
+        <span style="margin-left: auto;">ROW.02</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 002 ]</span>
@@ -186,7 +283,7 @@
           <div class="focus-grid">
             <div class="focus-item">
               <span class="focus-item-icon">&#x25C7;</span>
-              <div class="focus-item-number">DIR.001</div>
+              <div class="focus-item-number letterpress">DIR.001</div>
               <div class="focus-item-title">Multi-Agent Systems &amp; Agent Governance</div>
               <div class="focus-item-desc">
                 Building control planes for agent frameworks. Human-in-the-loop approval systems. MCP + REST transports for agent orchestration.
@@ -194,7 +291,7 @@
             </div>
             <div class="focus-item">
               <span class="focus-item-icon">&#x25C7;</span>
-              <div class="focus-item-number">DIR.002</div>
+              <div class="focus-item-number letterpress">DIR.002</div>
               <div class="focus-item-title">Human-Machine Collaboration</div>
               <div class="focus-item-desc">
                 Tooling and experiments that blur the line between human creativity and machine capability. Augmentation, not replacement.
@@ -202,7 +299,7 @@
             </div>
             <div class="focus-item">
               <span class="focus-item-icon">&#x25C7;</span>
-              <div class="focus-item-number">DIR.003</div>
+              <div class="focus-item-number letterpress">DIR.003</div>
               <div class="focus-item-title">Visual &amp; Generative Works</div>
               <div class="focus-item-desc">
                 Art that is code, code that is art. Generative art, interactive experiments, visual computing. If it looks as good as it runs, we want it.
@@ -210,7 +307,7 @@
             </div>
             <div class="focus-item">
               <span class="focus-item-icon">&#x25C7;</span>
-              <div class="focus-item-number">DIR.004</div>
+              <div class="focus-item-number letterpress">DIR.004</div>
               <div class="focus-item-title">Whatever You Bring</div>
               <div class="focus-item-desc">
                 The weirdest ideas often become the most interesting projects. If you can articulate it, we'll help you build it. No idea is too strange.
@@ -221,8 +318,35 @@
       </section>
 
       <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>REPO.01-02</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>ACTIVE PROJECTS</span>
+        <div class="micro-line"></div>
+        <span>PUBLIC</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>SEC.C</span>
+      </div>
+
+      <!-- ============================================
            MODULE 003 — PROJECTS
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.003 / PROJECTS / SEC.C</span>
+        <span style="margin-left: auto;">ROW.03</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 003 ]</span>
@@ -231,7 +355,7 @@
         </div>
         <div class="module-body">
           <div class="project-card">
-            <div class="project-index">01</div>
+            <div class="project-index letterpress">01</div>
             <div class="project-info">
               <h3><a href="https://github.com/LandslideLab/Sphinx" target="_blank" rel="noopener">Sphinx</a></h3>
               <p>
@@ -245,7 +369,7 @@
             </div>
           </div>
           <div class="project-card">
-            <div class="project-index">02</div>
+            <div class="project-index letterpress">02</div>
             <div class="project-info">
               <h3><a href="https://github.com/LandslideLab/.github" target="_blank" rel="noopener">.github</a></h3>
               <p>
@@ -262,18 +386,45 @@
       </section>
 
       <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>JOIN.PROC</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>PROCEDURE.v1</span>
+        <div class="micro-line"></div>
+        <span>1 STEP</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>SEC.D</span>
+      </div>
+
+      <!-- ============================================
            MODULE 004 — HOW TO JOIN
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.004 / JOIN / SEC.D</span>
+        <span style="margin-left: auto;">ROW.04</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 004 ]</span>
-          <span class="module-title">Join Procedure — One Step</span>
+          <span class="module-title">Join Procedure &mdash; One Step</span>
           <span class="module-coord">SEC.D / ROW.04</span>
         </div>
         <div class="module-body" style="padding: 0;">
           <div class="join-steps">
             <div class="join-step">
-              <div class="step-number">01</div>
+              <div class="step-number distressed-light">01</div>
               <div class="step-title">Open an Issue</div>
               <div class="step-desc">
                 Create a new issue in the LANDSLIDE repository with the following title format:
@@ -281,14 +432,14 @@
               <code class="step-code">Join request: &lt;your GitHub username&gt;</code>
             </div>
             <div class="join-step">
-              <div class="step-number">02</div>
+              <div class="step-number distressed-light">02</div>
               <div class="step-title">Tell Us (Optional)</div>
               <div class="step-desc">
                 Share what you want to build or explore. This is optional but fun &mdash; it helps us understand your interests and connect you with relevant projects.
               </div>
             </div>
             <div class="join-step">
-              <div class="step-number">03</div>
+              <div class="step-number distressed-light">03</div>
               <div class="step-title">Get Invited</div>
               <div class="step-desc">
                 A maintainer will review your request and send you an invitation. That's it. Your membership is public by default; you can set it to private anytime in your org settings.
@@ -299,8 +450,35 @@
       </section>
 
       <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>R.01-06</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>STANDARDS</span>
+        <div class="micro-line"></div>
+        <span>6 RULES</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>SEC.E</span>
+      </div>
+
+      <!-- ============================================
            MODULE 005 — GROUND RULES
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.005 / RULES / SEC.E</span>
+        <span style="margin-left: auto;">ROW.05</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 005 ]</span>
@@ -310,27 +488,27 @@
         <div class="module-body" style="padding: 0;">
           <div class="rules-list">
             <div class="rule-item">
-              <span class="rule-index">R.01</span>
+              <span class="rule-index letterpress">R.01</span>
               <span class="rule-text">Be kind. Treat everyone with respect and patience.</span>
             </div>
             <div class="rule-item">
-              <span class="rule-index">R.02</span>
+              <span class="rule-index letterpress">R.02</span>
               <span class="rule-text">Be curious. Ask questions, explore ideas, challenge assumptions.</span>
             </div>
             <div class="rule-item">
-              <span class="rule-index">R.03</span>
+              <span class="rule-index letterpress">R.03</span>
               <span class="rule-text">Give credit where it's due. Acknowledge contributions openly.</span>
             </div>
             <div class="rule-item">
-              <span class="rule-index">R.04</span>
+              <span class="rule-index letterpress">R.04</span>
               <span class="rule-text">Everything is open source. That's the point. No closed doors.</span>
             </div>
             <div class="rule-item">
-              <span class="rule-index">R.05</span>
+              <span class="rule-index letterpress">R.05</span>
               <span class="rule-text">Build in public. Share your progress, failures, and learnings.</span>
             </div>
             <div class="rule-item">
-              <span class="rule-index">R.06</span>
+              <span class="rule-index letterpress">R.06</span>
               <span class="rule-text">No idea is too weird. If you can articulate it, we'll explore it.</span>
             </div>
           </div>
@@ -338,34 +516,66 @@
       </section>
 
       <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>ONBOARD</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>SEQUENCE</span>
+        <div class="micro-line"></div>
+        <span>3 STEPS</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>SEC.F</span>
+      </div>
+
+      <!-- ============================================
            GETTING STARTED
            ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.006 / START / SEC.F</span>
+        <span style="margin-left: auto;">ROW.06</span>
+      </div>
       <section class="module">
         <div class="module-header">
           <span class="module-number">[ 006 ]</span>
-          <span class="module-title">Getting Started — Onboarding Sequence</span>
+          <span class="module-title">Getting Started &mdash; Onboarding Sequence</span>
           <span class="module-coord">SEC.F / ROW.06</span>
         </div>
         <div class="module-body" style="padding: 0;">
           <div class="join-steps">
             <div class="join-step">
-              <div class="step-number">01</div>
+              <div class="step-number distressed-light">01</div>
               <div class="step-title">Join via Issue</div>
               <div class="step-desc">Open a join request issue as described in Module 004.</div>
             </div>
             <div class="join-step">
-              <div class="step-number">02</div>
+              <div class="step-number distressed-light">02</div>
               <div class="step-title">Introduce Yourself</div>
               <div class="step-desc">Say hello in an issue or discussion. Tell us who you are and what excites you.</div>
             </div>
             <div class="join-step">
-              <div class="step-number">03</div>
+              <div class="step-number distressed-light">03</div>
               <div class="step-title">Find Your Spark</div>
               <div class="step-desc">Explore existing projects or open an issue with your own idea. Build. Break. Learn. Repeat.</div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- ============================================
+           DIMENSION LINE
+           ============================================ -->
+      <div class="dimension-line" data-dim="CTA / CALL-TO-ACTION" aria-hidden="true"></div>
 
       <!-- ============================================
            CTA SECTION
@@ -379,7 +589,7 @@
             <div class="mono text-xs" style="color: #666; margin-bottom: 16px; letter-spacing: 0.1em;">
               [ CTA ] &mdash; CALL TO ACTION
             </div>
-            <h2>Let's make<br/>something strange.</h2>
+            <h2 class="distressed-light">Let's make<br/>something strange.</h2>
             <p>
               No experience requirements. No interviews. No gatekeeping.<br/>
               Just bring your curiosity and your weirdest ideas.
@@ -463,8 +673,8 @@
           <div class="footer-col">
             <div class="footer-col-title">Coordinates</div>
             <div class="footer-col-text">
-              40.7128° N<br/>
-              74.0060° W<br/>
+              40.7128&deg; N<br/>
+              74.0060&deg; W<br/>
               ALT: 10m<br/>
               GRID: WGS84<br/><br/>
               SEC.A-F / ROW.01-06<br/>
