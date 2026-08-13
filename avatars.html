@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LANDSLIDE — Historical avatar archive. Standard and seasonal identity marks." />
+    <title>LANDSLIDE — Avatar Archive</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.cn/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      .avatar-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .avatar-card {
+        border: var(--border-thin);
+        padding: 24px;
+        position: relative;
+        background: var(--off-white);
+      }
+      .avatar-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: var(--border-light);
+        background: var(--white);
+      }
+      .avatar-meta {
+        margin-top: 16px;
+        border-top: var(--border-thin);
+        padding-top: 12px;
+      }
+      .avatar-note {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--mid-gray);
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 32px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: var(--black);
+        text-decoration: none;
+        border: var(--border-thin);
+        padding: 10px 16px;
+      }
+      .back-link:hover {
+        background: var(--black);
+        color: var(--white);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SVG Filters for distressed effects -->
+    <svg class="svg-filters" aria-hidden="true">
+      <defs>
+        <filter id="rough-edge" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="4" seed="1" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="rough-edge-light" x="-2%" y="-2%" width="104%" height="104%">
+          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="3" seed="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Noise overlay for paper/print texture -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <div class="page-wrapper">
+
+      <!-- ============================================
+           TOP RULER / COORDINATE BAR
+           ============================================ -->
+      <div class="top-ruler" aria-hidden="true">
+        <span>0</span>
+        <span>X:0040</span>
+        <span>X:0080</span>
+        <span>X:0120</span>
+        <span>X:0160</span>
+        <span>X:0200</span>
+        <span>X:0240</span>
+        <span>1200px</span>
+      </div>
+
+      <!-- ============================================
+           TOP METADATA BAR
+           ============================================ -->
+      <div class="meta-bar">
+        <div class="meta-left">
+          <span class="mono text-xs letterpress">LS-2024-001</span>
+          <span class="meta-separator">|</span>
+          <span class="mono text-xs">AVATAR.ARCH</span>
+          <span class="meta-separator">|</span>
+          <span class="mono text-xs">STATUS: <span class="meta-dot"></span> OPEN</span>
+        </div>
+        <div class="meta-center">
+          <span class="mono text-xs">TYPE: IDENTITY</span>
+          <span class="meta-separator">|</span>
+          <span class="mono text-xs">CLASS: ARCHIVE</span>
+        </div>
+        <div class="meta-right">
+          <span class="mono text-xs">40.7128&deg;N</span>
+          <span class="meta-separator">/</span>
+          <span class="mono text-xs">74.0060&deg;W</span>
+          <span class="meta-separator">|</span>
+          <span class="mono text-xs">2026.08.13</span>
+        </div>
+      </div>
+
+      <!-- ============================================
+           MICRO-DECORATION STRIP
+           ============================================ -->
+      <div class="micro-strip" aria-hidden="true">
+        <span>SEC.00</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <div class="micro-line"></div>
+        <span>GRID: WGS84</span>
+        <div class="micro-line"></div>
+        <span>SCALE 1:1</span>
+        <div class="micro-dots">
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+          <span class="micro-dot"></span>
+        </div>
+        <span>REF.LANDSLIDE</span>
+      </div>
+
+      <!-- ============================================
+           ARCHIVE HEADER
+           ============================================ -->
+      <section class="hero">
+        <div class="crosshair tl"></div>
+        <div class="crosshair tr"></div>
+        <div class="crosshair bl"></div>
+        <div class="crosshair br"></div>
+
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div>
+              <div class="hero-tagline letterpress">
+                <span class="mono">[ 000 ]</span> &mdash; IDENTITY ARCHIVE
+              </div>
+              <h1 class="hero-title distressed">
+                Avatar<span class="mountain">&#9968;</span>Archive
+              </h1>
+              <p class="hero-tagline" style="font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--black); font-weight: 500;">
+                Historical avatars of the LANDSLIDE identity.
+              </p>
+            </div>
+            <p class="hero-description">
+              Every avatar is a layer of the landslide &mdash; the standard mark used day to day, and the seasonal variants that surface for special occasions. This archive keeps the full record of who we looked like, and when.
+            </p>
+          </div>
+          <div class="hero-right">
+            <div class="hero-specs">
+              <div class="spec-row">
+                <span class="spec-label">ORG-ID</span>
+                <span class="spec-value">LandslideLab</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">ENTRIES</span>
+                <span class="spec-value">002</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">FORMAT</span>
+                <span class="spec-value">PNG 1254&times;1254</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">FIRST-LOGGED</span>
+                <span class="spec-value">2026.08.13</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">MAINTAINER</span>
+                <span class="spec-value">OPEN</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">SOURCE</span>
+                <span class="spec-value">PUBLIC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           DIMENSION LINE
+           ============================================ -->
+      <div class="dimension-line" data-dim="1200px / 100%" aria-hidden="true"></div>
+
+      <!-- ============================================
+           MODULE 007 — AVATARS
+           ============================================ -->
+      <div class="section-micro-label" aria-hidden="true">
+        <span class="sml-dot"></span>
+        <span>MOD.007 / AVATARS / SEC.G</span>
+        <span style="margin-left: auto;">ROW.07</span>
+      </div>
+      <section class="module">
+        <div class="module-header">
+          <span class="module-number">[ 007 ]</span>
+          <span class="module-title">Historical Avatar Record</span>
+          <span class="module-coord">SEC.G / ROW.07</span>
+        </div>
+        <div class="module-body">
+          <div class="avatar-grid">
+
+            <div class="avatar-card">
+              <img src="/assets/avatars/avatar-daily.png" alt="LANDSLIDE standard avatar" />
+              <div class="avatar-meta">
+                <div class="spec-row">
+                  <span class="spec-label">AV.001</span>
+                  <span class="spec-value">STANDARD</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label">STATUS</span>
+                  <span class="spec-value">ACTIVE / DEFAULT</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label">PERIOD</span>
+                  <span class="spec-value">2026.08.13 &mdash; PRESENT</span>
+                </div>
+                <p class="avatar-note">
+                  The standard identity mark. The default face of LANDSLIDE on GitHub and everywhere else the community shows up.
+                </p>
+              </div>
+            </div>
+
+            <div class="avatar-card">
+              <img src="/assets/avatars/avatar-pride.png" alt="LANDSLIDE pride month avatar" />
+              <div class="avatar-meta">
+                <div class="spec-row">
+                  <span class="spec-label">AV.002</span>
+                  <span class="spec-value">PRIDE MONTH</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label">STATUS</span>
+                  <span class="spec-value">SEASONAL</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-label">PERIOD</span>
+                  <span class="spec-value">ANNUAL / JUNE</span>
+                </div>
+                <p class="avatar-note">
+                  Seasonal variant flown during Pride Month. Same mark, refracted through a different spectrum.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <a href="/" class="back-link">&#x2190; RETURN TO HOMEPAGE</a>
+        </div>
+      </section>
+
+      <!-- ============================================
+           DIMENSION LINE
+           ============================================ -->
+      <div class="dimension-line" data-dim="END / ARCHIVE" aria-hidden="true"></div>
+
+      <!-- ============================================
+           FOOTER
+           ============================================ -->
+      <footer class="footer">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-col-title">Organization</div>
+            <div class="footer-col-text">
+              LANDSLIDE &#9968;<br/>
+              LandslideLab<br/>
+              github.com/LandslideLab<br/><br/>
+              <div class="mono" style="font-size: 9px; color: var(--mid-gray); margin-top: 4px;">LS-2024-001-REV1.0.0</div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Specifications</div>
+            <div class="footer-col-text">
+              TYPE: Community<br/>
+              CLASS: Open-Source<br/>
+              STATUS: Active<br/>
+              ENTRY: Open<br/>
+              FEE: None<br/>
+              LANG: EN<br/>
+              TZ: UTC
+            </div>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Coordinates</div>
+            <div class="footer-col-text">
+              40.7128&deg; N<br/>
+              74.0060&deg; W<br/>
+              ALT: 10m<br/>
+              GRID: WGS84<br/><br/>
+              SEC.A-G / ROW.01-07<br/>
+              MODULES: 007
+            </div>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Certification</div>
+            <div class="footer-col-text">
+              &#x25CB; OPEN SOURCE<br/>
+              &#x25CB; NO GATEKEEPING<br/>
+              &#x25CB; PUBLIC MEMBERSHIP<br/>
+              &#x25CB; ASYNC COLLAB<br/>
+              &#x25CB; MULTI-DISCIPLINE<br/><br/>
+              <span class="mono" style="font-size: 8px; color: var(--light-gray);">
+                CERT.LS.2024<br/>
+                VALID: INDEFINITE
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom metadata strip -->
+        <div style="margin-top: 24px; padding-top: 16px; border-top: var(--border-thin); display: flex; justify-content: space-between; align-items: center;">
+          <span class="mono text-xs" style="color: var(--mid-gray);">
+            &#x00A9; 2024 LANDSLIDE / LandslideLab. All rights reserved.
+          </span>
+          <a href="/" class="mono text-xs" style="color: var(--black); text-decoration: underline;">
+            HOMEPAGE &#x2192;
+          </a>
+          <span class="mono text-xs" style="color: var(--light-gray);">
+            DOC.LS-2024-001 / REV.1.1.0 / 2026.08.13
+          </span>
+        </div>
+      </footer>
+
+    </div>
+  </body>
+</html>
