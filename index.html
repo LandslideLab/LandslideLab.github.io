@@ -136,7 +136,7 @@
               </div>
               <div class="spec-row">
                 <span class="spec-label">REPOSITORIES</span>
-                <span class="spec-value">02</span>
+                <span class="spec-value">10</span>
               </div>
               <div class="spec-row">
                 <span class="spec-label">MEMBERS</span>
@@ -156,7 +156,7 @@
               </div>
               <div class="spec-row">
                 <span class="spec-label">LAST-UPDATE</span>
-                <span class="spec-value">2024.08.13</span>
+                <span class="spec-value">2026.08.14</span>
               </div>
             </div>
             <div style="margin-top: 24px;">
@@ -357,19 +357,125 @@
           <div class="project-card">
             <div class="project-index letterpress">01</div>
             <div class="project-info">
-              <h3><a href="https://github.com/LandslideLab/Sphinx" target="_blank" rel="noopener">Sphinx</a></h3>
+              <h3><a href="https://github.com/LandslideLab/yieldpoint" target="_blank" rel="noopener">yieldpoint</a></h3>
+              <p>
+                Dynamic power handover engine for human-machine collaboration and multi-agent systems. Autonomy as a first-class runtime policy: control moves dynamically between human and machine, driven by live confidence / risk / cost / timeout signals &mdash; not static "ask human when stuck" interrupts.
+              </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>runtime policy engine over a five-level autonomy model (operator &rarr; machine-only); zero-dependency core with framework adapters (LangGraph.js / OpenAI Agents SDK / Vercel AI SDK / raw loops); built-in scenario simulation scoring quality / safety / autonomy / cost.</div>
+                <div><span class="spec-k">ARTIFACT</span><code>yieldpoint</code> on npm (v0.2.x, provenance-signed via OIDC); TS dual ESM/CJS; 155 tests; MIT.</div>
+                <div><span class="spec-k">MARKET</span>every production agent system needs supervised autonomy. Existing HITL tools are binary interrupts; yieldpoint is the missing primitive for dynamic, provable control transfer &mdash; the governance ask of 2026 agent deployments.</div>
+                <div><span class="spec-k">RESEARCH</span>formalizes dynamic authority handover as an engine, grounding the human-agency autonomy literature (Knight Institute levels) in runnable, testable code &mdash; a core building block of accountable human-machine collaboration.</div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="lang">TypeScript</span><br/>
+              <span>npm</span><br/>
+              <span>HMC</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-index letterpress">02</div>
+            <div class="project-info">
+              <h3><a href="https://github.com/LandslideLab/arena" target="_blank" rel="noopener">arena</a></h3>
+              <p>
+                Framework-agnostic multi-agent scenario simulation and evaluation engine. Same scenario suite, many orchestration strategies, comparable quality / safety / autonomy / cost / latency metrics &mdash; with statistical significance and CI regression gates.
+              </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>deterministic message-bus scheduler (seeded RNG, timeout/deadlock detection); YAML/TS scenario DSL; A/B strategy comparison with significance tests; RegressionGate + GitHub Action; CLI (<code>run</code> / <code>compare</code> / <code>report</code>).</div>
+                <div><span class="spec-k">ARTIFACT</span><code>@noahisarider/arena</code> on npm (v0.2.x, provenance-signed); GitHub Action; 189 tests, 96.6% coverage; MIT.</div>
+                <div><span class="spec-k">MARKET</span>JS/TS has no framework-agnostic measurement layer for multi-agent systems: LangGraph-, AI-SDK- and SaaS-bound tools evaluate LLMs, not orchestration strategies. arena makes "which strategy is safer/cheaper" an answerable, CI-enforced question.</div>
+                <div><span class="spec-k">RESEARCH</span>reproducible scenario suites turn multi-agent collaboration into an empirical science &mdash; the instrumentation layer for studying handover policies, role structures and emergent coordination.</div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="lang">TypeScript</span><br/>
+              <span>npm</span><br/>
+              <span>MULTI-AGENT EVAL</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-index letterpress">03</div>
+            <div class="project-info">
+              <h3><a href="https://github.com/LandslideLab/Sphinx" target="_blank" rel="noopener">Sphinx</a> <span style="color:var(--light-gray);font-family:var(--font-mono);font-size:10px;">/ SphinxGo</span></h3>
               <p>
                 The missing middle layer between agent frameworks and the humans who must supervise them. Sits between LangGraph / OpenAI SDK / CrewAI / any MCP-capable agent and the reviewer, providing the control plane every framework leaves out.
               </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>SHA3-256 decision chain + Ed25519 signatures; REST + WebSocket + MCP + web console in one self-contained binary (Go, zero-cgo); framework-agnostic HITL approval protocol.</div>
+                <div><span class="spec-k">ARTIFACT</span><code>Sphinx</code> (Python) + <code>SphinxGo</code> (Go module v0.1.0 on pkg.go.dev); single-binary HITL control plane; Apache-2.0.</div>
+                <div><span class="spec-k">MARKET</span>enterprises shipping agents need auditable human oversight; HITL approval with tamper-evident decision capture is the #1 governance requirement in agentic deployments &mdash; and it must work across every framework.</div>
+                <div><span class="spec-k">RESEARCH</span>decision capture as an audit primitive: how can machine decisions become evidence? Sphinx formalizes the human-in-the-loop contract between agent frameworks and accountability.</div>
+              </div>
             </div>
             <div class="project-meta">
-              <span class="lang">Python</span><br/>
+              <span class="lang">Python / Go</span><br/>
               <span>PUBLIC</span><br/>
               <span>AGENT GOV</span>
             </div>
           </div>
           <div class="project-card">
-            <div class="project-index letterpress">02</div>
+            <div class="project-index letterpress">04</div>
+            <div class="project-info">
+              <h3><a href="https://github.com/LandslideLab/Tiltmeter" target="_blank" rel="noopener">Tiltmeter</a> <span style="color:var(--light-gray);font-family:var(--font-mono);font-size:10px;">/ TiltmeterGo</span></h3>
+              <p>
+                Agent Skill Trust Platform: sign, govern and debug agent skills. Ed25519 signing/verification, governed registry with approvals and audit, and replay debugging for agent skills.
+              </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>Ed25519 key management + keyless ambient OIDC auth (GitHub Actions token exchange); SQLite governed registry; deterministic replay debugger; pure-Go implementation with no cgo.</div>
+                <div><span class="spec-k">ARTIFACT</span><code>Tiltmeter</code> (Python/FastAPI) + <code>TiltmeterGo</code> (Go module v0.1.0 on pkg.go.dev); signing CLI + verify gate + registry; 170 tests.</div>
+                <div><span class="spec-k">MARKET</span>the agent-skills economy is exploding with unverifiable, supply-chain-risky skills. Tiltmeter answers "what will this skill actually do &mdash; and did it change?" &mdash; trust infrastructure for machine-actionable code.</div>
+                <div><span class="spec-k">RESEARCH</span>verification and governance for executable knowledge: signing, replay and audit as the substrate for trustworthy agent ecosystems.</div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="lang">Python / Go</span><br/>
+              <span>PUBLIC</span><br/>
+              <span>SKILL TRUST</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-index letterpress">05</div>
+            <div class="project-info">
+              <h3><a href="https://github.com/LandslideLab/saltglass" target="_blank" rel="noopener">saltglass</a></h3>
+              <p>
+                Agent knowledge crystallization &amp; governance: distill agent sessions into human-approved, signed, sovereign knowledge crystals &mdash; local-first, encrypted, vendor-neutral.
+              </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>provenance chains with Ed25519 signing; knowledge half-life management (expiry / re-validation / conflict); human approval gates; age-encrypted local-first storage with dual output (agent YAML + human AGENTS.md / SRS cards).</div>
+                <div><span class="spec-k">ARTIFACT</span><code>saltglass</code> (org repo); crystallization pipeline + governance + verification gate; Apache-2.0.</div>
+                <div><span class="spec-k">MARKET</span>agent sessions generate ephemeral context that vanishes or leaks. saltglass turns them into governed, reusable, human-approved knowledge assets &mdash; the missing memory-and-governance layer for agentic teams.</div>
+                <div><span class="spec-k">RESEARCH</span>the knowledge lifecycle (crystallization, half-life, re-validation) treated as a first-class systems problem &mdash; bridging human memory, organizational learning and machine knowledge.</div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="lang">Python</span><br/>
+              <span>PUBLIC</span><br/>
+              <span>KNOWLEDGE GOV</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-index letterpress">06</div>
+            <div class="project-info">
+              <h3><a href="https://github.com/LandslideLab/MONOLITH" target="_blank" rel="noopener">MONOLITH</a></h3>
+              <p>
+                Digital landslide laboratory &mdash; a terminal-native observatory that treats a git repository as a geologic body: commits as sediment, faults as conflicts, erosion as reverts. Observe, don't fix.
+              </p>
+              <div class="project-spec">
+                <div><span class="spec-k">DIFFICULTY</span>git plumbing internals; commit-as-sediment modelling; fault/erosion analysis over repository history; terminal-first UX.</div>
+                <div><span class="spec-k">ARTIFACT</span><code>MONOLITH</code> (org repo, terminal application); observation engine + analysis reports.</div>
+                <div><span class="spec-k">MARKET</span>developer analytics as geology: teams get a new lens on how software really decays, conflicts and rebuilds &mdash; observability for code as a living structure, not a static artifact.</div>
+                <div><span class="spec-k">RESEARCH</span>metaphor as model: can geological process models (sedimentation, faulting, erosion) explain and predict software evolution? A cross-domain exploration of complexity science and software engineering.</div>
+              </div>
+            </div>
+            <div class="project-meta">
+              <span class="lang">Terminal</span><br/>
+              <span>PUBLIC</span><br/>
+              <span>OBSERVATORY</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-index letterpress">07</div>
             <div class="project-info">
               <h3><a href="https://github.com/LandslideLab/.github" target="_blank" rel="noopener">.github</a></h3>
               <p>
