@@ -62,3 +62,9 @@ python -m http.server 5000 --bind 0.0.0.0
 - **噪点强度**: 调整 `.noise-overlay` 的 `opacity` 值
 - **微排版条带**: 在模块前添加 `<div class="micro-strip">` 块
 - **响应式**: 媒体查询断点为 900px 和 600px
+
+## 开源库（2026-08-23 引入）
+- **JsBarcode** (lindell/JsBarcode, MIT) — `assets/vendor/JsBarcode.all.min.js`，真实 CODE128 条码（hero + footer，页面内 `#heroBarcode` / `#footerBarcode`）
+- **qr-creator** (nimiq/qr-creator, MIT) — `assets/vendor/qr-creator.min.js`，CTA 区 QR（`#ctaQr`，指向 github.com/LandslideLab）
+- 加载方式：`index.html` 末尾 script 标签引用 `/assets/vendor/*.js`，绝对路径（站点部署在域名根）
+- ⚠️ 新 vendor 文件必须提交进 git（本仓库无 .gitignore 限制）

@@ -40,3 +40,12 @@
 - **不要**使用圆角卡片、毛玻璃效果——保持锐利的直角和清晰的边界
 - **不要**使用大段留白——信息密度是核心，每个区域都要有内容
 - **不要**使用装饰性图片——所有视觉元素都应该是功能性的（网格、编号、线条）
+
+## 变更记录
+- 2026-08-23：Micrographic 增强（真实可扫描元素替代装饰性模拟）：
+  - 手写 CSS 假条码 → JsBarcode 真实 CODE128（hero 编码 LS-2024-001-REV1.0.0；footer 编码组织 URL）
+  - 新增 qr-creator QR（CTA，扫描直达 GitHub 组织）
+  - hero 规格表新增 DataMatrix 装饰点阵 + 条码块
+  - hero 描述下方新增 7px 微印刷免责声明（microprint）
+  - CTA 新增警示标（FRAGILE — IDEAS INSIDE）+ 圆形印章（APPROVED / OPEN SOURCE / NO GATEKEEPING）
+  - 顶部标尺增加 8px 子刻度
