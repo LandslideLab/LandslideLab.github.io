@@ -1328,3 +1328,152 @@ body {
     display: none;
   }
 }
+
+/* ============================================
+   MICROGRAPHIC BOOST — real barcode / QR / microprint / stamps
+   (added 2026-08-23)
+   ============================================ */
+
+/* sub-ticks on the top ruler */
+.top-ruler {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 39px, var(--light-gray) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(0, 0, 0, 0.06) 7px 8px);
+}
+
+/* microprint */
+.microprint {
+  margin-top: 20px;
+  max-width: 560px;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  line-height: 1.55;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  text-align: justify;
+  color: var(--light-gray);
+  border-top: 1px solid var(--border-gray);
+  padding-top: 10px;
+}
+
+/* hero barcode block */
+.hero-barcode {
+  margin-top: 22px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  border: 1px solid var(--black);
+  padding: 10px 12px;
+  background: var(--white);
+}
+.hero-barcode-main { flex: 1; min-width: 0; }
+.hero-barcode-main svg { display: block; width: 100%; height: 30px; }
+.barcode-caption {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  color: var(--mid-gray);
+}
+.barcode-caption + svg { margin: 4px 0; }
+
+/* datamatrix (decorative) */
+.datamatrix { flex: 0 0 auto; opacity: 0.92; }
+
+/* footer real barcode */
+.barcode-svg { display: block; width: 100%; height: auto; margin-top: 8px; }
+
+/* QR block in CTA */
+.qr-row {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.qr-box canvas {
+  display: block;
+  width: 96px;
+  height: 96px;
+  border: 1px solid #fff;
+  padding: 5px;
+  background: #fff;
+}
+.qr-side {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.qr-side .mono { color: #999; letter-spacing: 0.14em; }
+
+/* warning mark */
+.warn-mark {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  color: #bbb;
+}
+.warn-triangle {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 12px solid #ddd;
+}
+.warn-triangle::after {
+  content: '!';
+  position: absolute;
+  top: 3px;
+  left: -2px;
+  width: 4px;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* circular stamp */
+.stamp {
+  margin-top: 26px;
+  width: 116px;
+  height: 116px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  transform: rotate(-14deg);
+  position: relative;
+}
+.stamp::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+@media (max-width: 720px) {
+  .hero-barcode { flex-direction: column; align-items: stretch; }
+  .datamatrix { display: none; }
+  .stamp { width: 96px; height: 96px; }
+}
