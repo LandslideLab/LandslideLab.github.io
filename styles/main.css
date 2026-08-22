@@ -1477,3 +1477,33 @@ body {
   .datamatrix { display: none; }
   .stamp { width: 96px; height: 96px; }
 }
+
+/* ============================================
+   MOBILE FIX — project cards (narrow screens)
+   The 3-column card grid (index | info | meta) overflows on
+   narrow phones; stack meta below info and allow wrapping.
+   (added 2026-08-23)
+   ============================================ */
+@media (max-width: 600px) {
+  .project-card {
+    grid-template-columns: auto 1fr;
+    row-gap: 10px;
+  }
+  .project-index { grid-row: 1; }
+  .project-info {
+    grid-row: 1;
+    min-width: 0;
+  }
+  .project-info p,
+  .project-spec div {
+    overflow-wrap: break-word;
+  }
+  .project-spec code {
+    overflow-wrap: anywhere;
+  }
+  .project-meta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+  }
+}
